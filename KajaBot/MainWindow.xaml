@@ -1,0 +1,84 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="KajaBot.MainWindow"
+    xmlns:local="clr-namespace:KajaBot"
+    Title="KajaBot" Height="518" Width="816" MinHeight="500" MinWidth="400" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ObjectDataProvider x:Key="Stats"
+                            ObjectType="{x:Type local:StatisticsCollector}"
+                            MethodName="GetInstance" />
+        <ObjectDataProvider x:Key="Logger"
+                            ObjectType="{x:Type local:LoggingModel}"
+                            MethodName="GetInstance" />
+    </Window.Resources>
+    <Window.DataContext>
+        <StaticResource ResourceKey="MainWindowModel" />
+    </Window.DataContext>
+    <Grid>
+        <GroupBox Header="System log" Margin="10,10,10,265">
+            <ListView Margin="10" ItemsSource="{Binding Entries, Source={StaticResource Logger}}">
+                <ListView.View>
+                    <GridView AllowsColumnReorder="False">
+                        <GridViewColumn Header="Timestamp"
+                                        DisplayMemberBinding="{Binding Timestamp, StringFormat='yyyy-MM-dd HH:mm.ss'}"
+                                        Width="130" />
+                        <GridViewColumn Header="Level"
+                                        DisplayMemberBinding="{Binding Level}" Width="70" />
+                        <GridViewColumn Header="Name"
+                                        DisplayMemberBinding="{Binding Name}" Width="120" />
+                        <GridViewColumn Header="Message"
+                                        DisplayMemberBinding="{Binding Message}" Width="400" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+        <GroupBox Header="Statistics" Margin="10,0,10,10" MinHeight="250" Height="250" VerticalAlignment="Bottom">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Content="Uptime:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0"
+                       Grid.Column="0" />
+                <Label Content="Incoming messages:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1"
+                       Grid.Column="0" />
+                <Label Content="Restaurant menu requests:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2"
+                       Grid.Column="0" />
+                <Label Content="Executed commands:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="3"
+                       Grid.Column="0" />
+                <Label Content="Outgoing web requests:" HorizontalAlignment="Right" VerticalAlignment="Center"
+                       Grid.Row="4" Grid.Column="0" />
+                <Label Content="OCRed pages:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="5"
+                       Grid.Column="0" />
+                <Label Content="Unknown commands:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="6"
+                       Grid.Column="0" />
+                <!--<Label Content="Outgoing web requests:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="5" Grid.Column="0"/>-->
+
+                <Label Content="0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" />
+                <Label Content="{Binding Source={StaticResource Stats}, Path=IncomingMessageCount}"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" />
+                <Label Content="{Binding Source={StaticResource Stats}, Path=ExecutedRestaurantMenuRequestCount}"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" />
+                <Label Content="{Binding Source={StaticResource Stats}, Path=ExecutedCommandCount}"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" />
+                <Label Content="{Binding Source={StaticResource Stats}, Path=OutgoingWebRequestCount}"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="4" Grid.Column="1" />
+                <Label Content="{Binding Source={StaticResource Stats}, Path=OcredPageCount}"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="5" Grid.Column="1" />
+                <Label Content="{Binding Source={StaticResource Stats}, Path=UnknownCommandCount}"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="6" Grid.Column="1" />
+                <!--<Label Content="0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="5" Grid.Column="1"/>-->
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>

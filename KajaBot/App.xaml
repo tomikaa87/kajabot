@@ -1,0 +1,10 @@
+﻿<Application x:Class="KajaBot.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:KajaBot"
+             Startup="App_OnStartup">
+    <Application.Resources>
+        <local:MainWindowModel x:Key="MainWindowModel" />
+        <local:StatisticsCollector x:Key="StatisticsCollector" />
+    </Application.Resources>
+</Application>
