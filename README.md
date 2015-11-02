@@ -1,2 +1,2 @@
 # kajabot
-Slack bot that gives you the daily menu of various restaurant
+A Slack bot that gives you the daily menu of various restaurants
