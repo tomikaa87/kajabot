@@ -76,6 +76,7 @@
     <Compile Include="BotCommandLogHistory.cs" />
     <Compile Include="BotCommandTheCodingLove.cs" />
     <Compile Include="BotCommandXkcd.cs" />
+    <Compile Include="RestaurantFrappans.cs" />
     <Compile Include="IBotCommand.cs" />
     <Compile Include="IRestaurant.cs" />
     <Compile Include="LoggingModel.cs" />
