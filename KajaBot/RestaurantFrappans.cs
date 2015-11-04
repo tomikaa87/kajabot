@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Net;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.ServiceModel;
-using System.ServiceModel.Channels;
 using System.Text;
-using System.Threading.Tasks;
 using log4net;
 
 namespace KajaBot
@@ -44,7 +39,6 @@ namespace KajaBot
             catch (Exception)
             {
                 return "Nem sikerult letolteni az etlapot.";
-
             }
         }
 
@@ -53,7 +47,7 @@ namespace KajaBot
             string UrlRequest = "https://graph.facebook.com/v2.5/" +
                                 restaurantName +
                                 "/posts?access_token=" +
-                                ""; //Your FB API Token Here //TODO put this into a config file
+                                ""; //Your FB App Token Here //TODO put this into a config file
             return UrlRequest;
 
         }
@@ -62,8 +56,8 @@ namespace KajaBot
         {
             try
             {
-                HttpWebRequest request = WebRequest.Create(requestUrl) as HttpWebRequest;
-                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+                var request = WebRequest.Create(requestUrl) as HttpWebRequest;
+                var response = request.GetResponse() as HttpWebResponse;
                 {
                     if (response.StatusCode != HttpStatusCode.OK)
                     {
@@ -76,7 +70,6 @@ namespace KajaBot
                     {
                         StreamReader reader = new StreamReader(stream, Encoding.UTF8);
                         return reader.ReadToEnd();
-
                     }
                 }
             }
