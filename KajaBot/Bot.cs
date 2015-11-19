@@ -211,6 +211,7 @@ namespace KajaBot
             _restaurantManager.AddRestaurant(new RestaurantVian());
             _restaurantManager.AddRestaurant(new RestaurantKeksz());
             _restaurantManager.AddRestaurant(new RestaurantVarju());
+            _restaurantManager.AddRestaurant(new RestaurantFrappans());
         }
 
         /// <summary>
